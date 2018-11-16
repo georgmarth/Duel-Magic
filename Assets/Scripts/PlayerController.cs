@@ -1,16 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
+    public Movement Movement;
+    public Camera PlayerCamera;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private const string HorizontalAxis = "Horizontal";
+    private const string VerticalAxis = "Vertical";
+    private const string HorizontalRightAxis = "Right Horizontal";
+    private const string HorizontalLeftAxis = "Right Vertical";
+
+    private void Update()
+    {
+        Movement.MovementInput.Horizontal = Input.GetAxis(HorizontalAxis);
+        Movement.MovementInput.Vertical = Input.GetAxis(VerticalAxis);
+
+
+    }
 }
