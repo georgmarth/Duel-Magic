@@ -14,3 +14,5 @@ MonoBehaviour:
   MaxSpeed: 6
   MaxTurnSpeed: 0
   Acceleration: 50
+  AirControl: 0
+  JumpSpeed: 3
