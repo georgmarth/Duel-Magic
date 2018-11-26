@@ -19,6 +19,8 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool grounded = CheckGrounded();
+
         //Movement
         Quaternion rotation = Quaternion.LookRotation(enemyTarget.position - transform.position, Vector3.up);
         Vector3 forward = rotation * Vector3.forward;
@@ -26,17 +28,30 @@ public class Movement : MonoBehaviour
         Vector3 flatForward = (new Vector3(forward.x, 0f, forward.z)).normalized;
         Vector3 flatRight = Vector3.Cross(Vector3.up, flatForward);
         Vector3 movementVector = flatForward * MovementInput.Vertical + flatRight * MovementInput.Horizontal;
+
+        // different control in air
+        if (!grounded)
+        {
+            movementVector *= MovementSettings.AirControl;
+        }
         rb.AddForce(movementVector * MovementSettings.Acceleration, ForceMode.Acceleration);
 
         Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, MovementSettings.MaxSpeed);
+
+        // damp movement on ground
+        if (grounded)
+        {
+            horizontalVelocity *= MovementSettings.InverseDamping;
+        }
+
         float verticalVelocity = rb.velocity.y;
         rb.velocity = new Vector3(horizontalVelocity.x, verticalVelocity, horizontalVelocity.z);
 
         // Jump
         if (MovementInput.Jump)
         {
-            if (CheckGrounded())
+            if (grounded)
             {
                 rb.AddForce(Vector3.up * MovementSettings.JumpSpeed, ForceMode.VelocityChange);
             }
