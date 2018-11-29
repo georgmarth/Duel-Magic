@@ -73,5 +73,11 @@ public class MovementInput
     public float Vertical { get; set; }
     public bool Jump { get; set; }
 
+    public bool AttackPress { get; set; }
+    public bool AttackHold { get; set; }
+
+    public bool DefendPress { get; set; }
+    public bool DefendHold { get; set; }
+
     public Quaternion LookRotation { get; set; }
 }
