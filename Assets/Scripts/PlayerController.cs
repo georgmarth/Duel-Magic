@@ -3,22 +3,38 @@
 public class PlayerController : MonoBehaviour
 {
     public Movement Movement;
-    public Camera PlayerCamera;
+    public PlayerAttack Attack;
+    public PlayerCamera PlayerCamera;
 
-    private const string HorizontalAxis = "Horizontal";
-    private const string VerticalAxis = "Vertical";
-    private const string HorizontalRightAxis = "Right Horizontal";
-    private const string HorizontalLeftAxis = "Right Vertical";
-    private const string Jump = "Jump";
+    private const string HORIZONTAL = "Horizontal";
+    private const string VERTICAL = "Vertical";
+    private const string HORIZONTAL_RIGHT = "Right Horizontal";
+    private const string VERTICAL_RIGHT = "Right Vertical";
+    private const string JUMP = "Jump";
+    private const string FIRE = "Fire1";
 
     private void Update()
     {
-        Movement.MovementInput.Horizontal = Input.GetAxis(HorizontalAxis);
-        Movement.MovementInput.Vertical = Input.GetAxis(VerticalAxis);
+        // Movement
+        Movement.MovementInput.Horizontal = Input.GetAxis(HORIZONTAL);
+        Movement.MovementInput.Vertical = Input.GetAxis(VERTICAL);
 
-        if (Input.GetButtonDown(Jump))
+        // Jump
+        if (Input.GetButtonDown(JUMP))
         {
             Movement.MovementInput.Jump = true;
+        }
+
+        // LookAt
+        Vector2 cameraRotationOffset = new Vector2();
+        cameraRotationOffset.x = Input.GetAxis(HORIZONTAL_RIGHT);
+        cameraRotationOffset.y = Input.GetAxis(VERTICAL_RIGHT);
+        PlayerCamera.rotationOffset = cameraRotationOffset;
+
+        // Attack
+        if (Input.GetButtonDown(FIRE))
+        {
+            Attack.Attack();
         }
     }
 }

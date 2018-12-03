@@ -25,15 +25,15 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         amount = Mathf.Max(0, amount - damage);
-        OnHealthChanged(amount, -damage);
+        OnHealthChanged?.Invoke(amount, -damage);
 
         if (amount == 0)
-            OnDeath();
+            OnDeath?.Invoke();
     }
 
     public void GainHealth(int gain)
     {
         amount += gain;
-        OnHealthChanged(amount, gain);
+        OnHealthChanged (amount, gain);
     }
 }
