@@ -38,8 +38,6 @@ public class MissileMovement : MonoBehaviour
         Vector3 deltaVelocity = actualRotation * Vector3.forward;
         deltaVelocity *= Acceleration * Time.deltaTime;
 
-        lastVelocityDelta = deltaVelocity;
-
         // apply velocity change
         velocity += deltaVelocity;
         velocity = Vector3.ClampMagnitude(velocity, MaxSpeed);
@@ -49,9 +47,9 @@ public class MissileMovement : MonoBehaviour
         rb.position += velocity * Time.deltaTime;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
-        Gizmos.DrawLine(transform.position, transform.position + (lastVelocityDelta * 100));
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(StationaryTarget, .1f);
     }
 }
