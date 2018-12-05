@@ -12,14 +12,11 @@ public class MissileMovement : MonoBehaviour
     public float StartVelocity;
 
     Rigidbody rb;
-    Vector3 velocity;
-
-    Vector3 lastVelocityDelta;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        velocity = transform.forward * StartVelocity;
+        rb.velocity = transform.forward * StartVelocity;
     }
 
     private void FixedUpdate()
@@ -33,23 +30,16 @@ public class MissileMovement : MonoBehaviour
         Vector3 targetDirection = (StationaryTarget - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         Quaternion actualRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, TurnSpeed * Time.deltaTime);
-        
+
         // calculate velocity delta
         Vector3 deltaVelocity = actualRotation * Vector3.forward;
         deltaVelocity *= Acceleration * Time.deltaTime;
 
         // apply velocity change
-        velocity += deltaVelocity;
-        velocity = Vector3.ClampMagnitude(velocity, MaxSpeed);
+        rb.AddForce(deltaVelocity, ForceMode.VelocityChange);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, MaxSpeed);
 
-        // set new rotation and position
+        // set new rotation
         rb.rotation = actualRotation;
-        rb.position += velocity * Time.deltaTime;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(StationaryTarget, .1f);
     }
 }

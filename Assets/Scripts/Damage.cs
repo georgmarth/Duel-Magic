@@ -6,8 +6,9 @@ public class Damage : MonoBehaviour
 
     public LayerMask enemyMask;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
+        Collider other = collision.collider;
         // check if other is in enemyMask
         if (((1 << other.gameObject.layer) & enemyMask) != 0)
         {
@@ -16,5 +17,4 @@ public class Damage : MonoBehaviour
 
         Destroy(gameObject);
     }
-
 }
