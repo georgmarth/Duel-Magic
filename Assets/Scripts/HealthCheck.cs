@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class HealthCheck : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class HealthCheck : MonoBehaviour
 
     private void OnHealthChanged(int currentAmount, int damageAmount)
     {
-        HealthChanged.Invoke((float) currentAmount / health.StartHealth);
+        HealthChanged.Invoke((float)currentAmount / health.StartHealth);
     }
 
     private void OnDestroy()
@@ -25,7 +24,4 @@ public class HealthCheck : MonoBehaviour
 }
 
 [System.Serializable]
-public class IntEvent : UnityEvent<float>
-{
-
-}
+public class IntEvent : UnityEvent<float> { }
