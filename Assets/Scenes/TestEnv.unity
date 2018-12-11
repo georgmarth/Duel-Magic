@@ -6706,7 +6706,13 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1737507971346800, guid: 57f726383a64a414b9461592e516080d,
     type: 2}
   m_PrefabInternal: {fileID: 1129474612}
---- !u!114 &436793849
+--- !u!114 &436793851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114319244056932828, guid: 57f726383a64a414b9461592e516080d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1129474612}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &436793852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6733,12 +6739,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: IntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &436793851 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114319244056932828, guid: 57f726383a64a414b9461592e516080d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1129474612}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!43 &516571853
 Mesh:
   m_ObjectHideFlags: 0
