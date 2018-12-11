@@ -5,13 +5,14 @@ public class PlayerAttack : MonoBehaviour
     public Transform Launch;
     public GameObject MissilePrefab;
     public PlayerCamera PlayerCamera;
+    public LayerMask enemyMask;
 
     public Transform Target;
 
     public void Attack()
     {
         Camera camera = PlayerCamera.GetComponent<Camera>();
-        Ray centerRay = camera.ScreenPointToRay(new Vector3((camera.pixelWidth - 1) / 2f, (camera.pixelHeight - 1) / 2f, 0f));
+        Ray centerRay = camera.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
         float distanceToPlayer = Vector3.Distance(PlayerCamera.transform.position, Target.position);
         Vector3 stationaryTarget = centerRay.GetPoint(distanceToPlayer);
 
@@ -21,6 +22,11 @@ public class PlayerAttack : MonoBehaviour
         {
             instanceMovement.Stationary = true;
             instanceMovement.StationaryTarget = stationaryTarget;
+        }
+        Damage missileDamage = instance.GetComponent<Damage>();
+        if (missileDamage != null)
+        {
+            missileDamage.enemyMask = enemyMask;
         }
     }
 }

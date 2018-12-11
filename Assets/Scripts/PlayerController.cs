@@ -6,35 +6,42 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack Attack;
     public PlayerCamera PlayerCamera;
 
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
-    private const string HORIZONTAL_RIGHT = "Right Horizontal";
-    private const string VERTICAL_RIGHT = "Right Vertical";
-    private const string JUMP = "Jump";
-    private const string FIRE = "Fire1";
+    public PlayerNumber player;
+
+    public const string HORIZONTAL = "Horizontal";
+    public const string VERTICAL = "Vertical";
+    public const string HORIZONTAL_RIGHT = "Right Horizontal";
+    public const string VERTICAL_RIGHT = "Right Vertical";
+    public const string JUMP = "Jump";
+    public const string FIRE = "Fire1";
 
     private void Update()
     {
         // Movement
-        Movement.MovementInput.Horizontal = Input.GetAxis(HORIZONTAL);
-        Movement.MovementInput.Vertical = Input.GetAxis(VERTICAL);
+        Movement.MovementInput.Horizontal = Input.GetAxis(PlayerInputString(HORIZONTAL));
+        Movement.MovementInput.Vertical = Input.GetAxis(PlayerInputString(VERTICAL));
 
         // Jump
-        if (Input.GetButtonDown(JUMP))
+        if (Input.GetButtonDown(PlayerInputString(JUMP)))
         {
             Movement.MovementInput.Jump = true;
         }
 
         // LookAt
         Vector2 cameraRotationOffset = new Vector2();
-        cameraRotationOffset.x = Input.GetAxis(HORIZONTAL_RIGHT);
-        cameraRotationOffset.y = Input.GetAxis(VERTICAL_RIGHT);
+        cameraRotationOffset.x = Input.GetAxis(PlayerInputString(HORIZONTAL_RIGHT));
+        cameraRotationOffset.y = Input.GetAxis(PlayerInputString(VERTICAL_RIGHT));
         PlayerCamera.rotationOffset = cameraRotationOffset;
 
         // Attack
-        if (Input.GetButtonDown(FIRE))
+        if (Input.GetButtonDown(PlayerInputString(FIRE)))
         {
             Attack.Attack();
         }
+    }
+
+    private string PlayerInputString(string inputWithoutPlayer)
+    {
+        return inputWithoutPlayer + " " + player.PlayerNumberString();
     }
 }
