@@ -22,7 +22,9 @@ public class Movement : MonoBehaviour
         bool grounded = CheckGrounded();
 
         //Movement
-        Quaternion rotation = Quaternion.LookRotation(enemyTarget.position - transform.position, Vector3.up);
+        var flatPosition = new Vector3(transform.position.x, 0f, transform.position.z);
+        var flatEnemyPosition = new Vector3(enemyTarget.position.x, 0f, enemyTarget.position.z);
+        Quaternion rotation = Quaternion.LookRotation(flatEnemyPosition - flatPosition, Vector3.up);
         Vector3 forward = rotation * Vector3.forward;
         rb.MoveRotation(rotation);
         Vector3 flatForward = (new Vector3(forward.x, 0f, forward.z)).normalized;

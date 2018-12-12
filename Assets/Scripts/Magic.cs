@@ -8,12 +8,18 @@ public class Magic : MonoBehaviour
     public Type MagicType;
     public float Amount = 100f;
 
+    public float MaxMagic = 100f;
+
     public float ChangeTypeCost = 20f;
+
+    public float RegainRate = 5f;
+
     public float ChangeTypeCooldown = 5f;
 
     private float changeTypeCooldownTimer;
 
     public Action<Type> OnTypeChanged;
+    public Action<float> OnMagicChanged;
 
     private void Start()
     {
@@ -22,11 +28,18 @@ public class Magic : MonoBehaviour
 
     private void Update()
     {
+        // regain magic
+        float oldAmount = Amount;
+        Amount = Mathf.Min(MaxMagic, Amount + RegainRate * Time.deltaTime);
+        if (oldAmount != Amount)
+            OnMagicChanged?.Invoke(Amount);
+
         if (changeTypeCooldownTimer > 0f)
         {
             changeTypeCooldownTimer -= Time.deltaTime;
             changeTypeCooldownTimer = Mathf.Max(0f, changeTypeCooldownTimer);
         }
+
     }
 
     public bool UseMagic(float cost)
@@ -36,6 +49,7 @@ public class Magic : MonoBehaviour
             return false;
         }
         Amount -= cost;
+        OnMagicChanged?.Invoke(Amount);
         return true;
     }
 

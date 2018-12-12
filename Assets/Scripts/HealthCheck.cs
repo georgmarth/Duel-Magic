@@ -5,7 +5,7 @@ public class HealthCheck : MonoBehaviour
 {
     public Health health;
 
-    public IntEvent HealthChanged;
+    public FloatEvent HealthChanged;
 
     private void Start()
     {
@@ -24,4 +24,4 @@ public class HealthCheck : MonoBehaviour
 }
 
 [System.Serializable]
-public class IntEvent : UnityEvent<float> { }
+public class FloatEvent : UnityEvent<float> { }

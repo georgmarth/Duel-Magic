@@ -5,7 +5,9 @@ public class PlayerAttack : MonoBehaviour
     public Transform Launch;
     public GameObject MissilePrefab;
     public PlayerCamera PlayerCamera;
+    public Magic Magic;
     public LayerMask enemyMask;
+    public float AttackCost = 5f;
 
     public Transform Target;
 
@@ -16,17 +18,20 @@ public class PlayerAttack : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(PlayerCamera.transform.position, Target.position);
         Vector3 stationaryTarget = centerRay.GetPoint(distanceToPlayer);
 
-        var instance = Instantiate(MissilePrefab, Launch.position, Launch.rotation);
-        MissileMovement instanceMovement = instance.GetComponent<MissileMovement>();
-        if (instanceMovement != null)
+        if (Magic.UseMagic(AttackCost))
         {
-            instanceMovement.Stationary = true;
-            instanceMovement.StationaryTarget = stationaryTarget;
-        }
-        Damage missileDamage = instance.GetComponent<Damage>();
-        if (missileDamage != null)
-        {
-            missileDamage.enemyMask = enemyMask;
+            var instance = Instantiate(MissilePrefab, Launch.position, Launch.rotation);
+            MissileMovement instanceMovement = instance.GetComponent<MissileMovement>();
+            if (instanceMovement != null)
+            {
+                instanceMovement.Stationary = true;
+                instanceMovement.StationaryTarget = stationaryTarget;
+            }
+            Damage missileDamage = instance.GetComponent<Damage>();
+            if (missileDamage != null)
+            {
+                missileDamage.enemyMask = enemyMask;
+            }
         }
     }
 }

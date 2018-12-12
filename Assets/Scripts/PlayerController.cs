@@ -4,6 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     public Movement Movement;
     public PlayerAttack Attack;
+    public PlayerDefense Defense;
     public PlayerCamera PlayerCamera;
 
     public PlayerNumber player;
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public const string VERTICAL_RIGHT = "Right Vertical";
     public const string JUMP = "Jump";
     public const string FIRE = "Fire1";
+    public const string DEFEND = "Fire2";
 
     private void Update()
     {
@@ -37,6 +39,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown(PlayerInputString(FIRE)))
         {
             Attack.Attack();
+        }
+
+        // Defend
+        if (Input.GetButtonDown(PlayerInputString(DEFEND)))
+        {
+            Defense.Defend();
         }
     }
 
