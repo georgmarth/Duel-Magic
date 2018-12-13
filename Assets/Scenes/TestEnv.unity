@@ -6774,11 +6774,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114642545294491036, guid: 3608cc549fcf16148b22bd7a18754649,
-        type: 2}
-      propertyPath: enemyTarget
-      value: 
-      objectReference: {fileID: 424338856}
     - target: {fileID: 114947590476052396, guid: 3608cc549fcf16148b22bd7a18754649,
         type: 2}
       propertyPath: PlayerCamera
@@ -6794,6 +6789,11 @@ Prefab:
       propertyPath: PlayerCamera
       value: 
       objectReference: {fileID: 534669906}
+    - target: {fileID: 114642545294491036, guid: 3608cc549fcf16148b22bd7a18754649,
+        type: 2}
+      propertyPath: enemyTarget
+      value: 
+      objectReference: {fileID: 424338856}
     - target: {fileID: 1175869068412580, guid: 3608cc549fcf16148b22bd7a18754649, type: 2}
       propertyPath: m_Name
       value: Player 1

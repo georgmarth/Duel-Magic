@@ -10,6 +10,9 @@ ModelImporter:
     100008: Missile_002
     100010: Missile_003
     100012: //RootNode
+    100014: Bone_001
+    100016: Bone_002
+    100018: Main
     400000: Armature
     400002: Bone
     400004: Missile
@@ -17,6 +20,9 @@ ModelImporter:
     400008: Missile_002
     400010: Missile_003
     400012: //RootNode
+    400014: Bone_001
+    400016: Bone_002
+    400018: Main
     2100000: Missile
     2300000: Missile_003
     3300000: Missile_003
@@ -25,11 +31,18 @@ ModelImporter:
     4300004: Missile_002
     4300006: Missile_001
     7400000: Default Take
+    7400002: Flying
     9500000: //RootNode
     13700000: Missile
     13700002: Missile_001
     13700004: Missile_002
-  externalObjects: {}
+    13700006: Missile_003
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Missile
+    second: {fileID: 2100000, guid: 32aaa36f8cb194f49bb6d87640c6888a, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -56,7 +69,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Flying
+      takeName: Flying
+      firstFrame: -1
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

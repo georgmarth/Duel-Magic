@@ -21,7 +21,11 @@ public class PlayerDefense : MonoBehaviour
             {
                 var instance = Instantiate(ShieldPrefab, ShieldSpawner.position, ShieldSpawner.rotation).GetComponent<Shield>();
                 shieldInstance = instance.GetComponent<Shield>();
-                shieldInstance.gameObject.layer = gameObject.layer;
+                instance.gameObject.layer = gameObject.layer;
+                foreach (Transform child in instance.transform)
+                {
+                    child.gameObject.layer = gameObject.layer;
+                }
             }
             else
             {

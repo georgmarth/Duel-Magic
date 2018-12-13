@@ -31,6 +31,10 @@ public class PlayerAttack : MonoBehaviour
             }
             Damage missileDamage = instance.GetComponent<Damage>();
             instance.layer = gameObject.layer;
+            foreach (Transform child in instance.transform)
+            {
+                child.gameObject.layer = gameObject.layer;
+            }
             if (missileDamage != null)
             {
                 missileDamage.enemyMask = enemyMask;

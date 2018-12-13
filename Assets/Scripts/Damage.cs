@@ -15,6 +15,9 @@ public class Damage : MonoBehaviour
             other.GetComponentInParent<Health>()?.TakeDamage(DamageAmount);
         }
 
-        Destroy(gameObject);
+        if (other.gameObject.layer != gameObject.layer)
+        {
+            Destroy(gameObject);
+        }
     }
 }
