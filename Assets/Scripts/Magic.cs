@@ -16,7 +16,14 @@ public class Magic : MonoBehaviour
 
     public float ChangeTypeCooldown = 5f;
 
-    private float changeTypeCooldownTimer;
+    public Color redColor = Color.red;
+    public Color blueColor = Color.blue;
+    public Color greenColor = Color.green;
+
+    [HideInInspector]
+    public float changeTypeCooldownTimer;
+
+    public ParticleSystem particles;
 
     public Action<Type> OnTypeChanged;
     public Action<float> OnMagicChanged;
@@ -53,7 +60,27 @@ public class Magic : MonoBehaviour
         return true;
     }
 
-    public bool ChangeType(Type newType)
+    public bool ChangeType()
+    {
+        Type newType = Type.Red;
+
+        switch (MagicType)
+        {
+            case Type.Red:
+                newType = Type.Green;
+                break;
+            case Type.Green:
+                newType = Type.Blue;
+                break;
+            case Type.Blue:
+                newType = Type.Red;
+                break;
+        }
+
+        return ChangeType(newType);
+    }
+
+    private bool ChangeType(Type newType)
     {
         if (MagicType == newType)
             return false;
@@ -63,11 +90,29 @@ public class Magic : MonoBehaviour
 
         if (UseMagic(ChangeTypeCost))
         {
+            changeTypeCooldownTimer = ChangeTypeCooldown;
             MagicType = newType;
             OnTypeChanged?.Invoke(newType);
+            var module = particles.main;
+            module.startColor = GetColor();
             return true;
         }
 
         return false;
+    }
+
+    public Color GetColor()
+    {
+        switch (MagicType)
+        {
+            case Type.Red:
+                return redColor;
+            case Type.Green:
+                return greenColor;
+            case Type.Blue:
+                return blueColor;
+            default:
+                return redColor;
+        }
     }
 }

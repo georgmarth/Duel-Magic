@@ -6,6 +6,10 @@ public class Damage : MonoBehaviour
 
     public LayerMask enemyMask;
 
+    public Magic.Type type;
+
+    public GameObject OnHitExplosion;
+
     private void OnCollisionEnter(Collision collision)
     {
         Collider other = collision.collider;
@@ -17,7 +21,18 @@ public class Damage : MonoBehaviour
 
         if (other.gameObject.layer != gameObject.layer)
         {
-            Destroy(gameObject);
+            if (OnHitExplosion != null)
+                Instantiate(OnHitExplosion, transform.position, transform.rotation);
+
+            var lifetime = GetComponent<Lifetime>();
+            if (lifetime != null)
+            {
+                lifetime.Invoke();
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

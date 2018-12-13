@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     public PlayerAttack Attack;
     public PlayerDefense Defense;
     public PlayerCamera PlayerCamera;
+    public Magic Magic;
 
     public PlayerNumber player;
 
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public const string JUMP = "Jump";
     public const string FIRE = "Fire1";
     public const string DEFEND = "Fire2";
+    public const string CHANGE_MAGIC_TYPE = "Fire3";
 
     private void Update()
     {
@@ -45,6 +47,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown(PlayerInputString(DEFEND)))
         {
             Defense.Defend();
+        }
+
+        // Change Magic Type
+        if (Input.GetButtonDown(PlayerInputString(CHANGE_MAGIC_TYPE)))
+        {
+            Magic.ChangeType();
         }
     }
 

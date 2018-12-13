@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        animator.SetTrigger("Hit");
+        animator?.SetTrigger("Hit");
         amount = Mathf.Max(0, amount - damage);
         OnHealthChanged?.Invoke(amount, -damage);
 
@@ -43,7 +43,7 @@ public class Health : MonoBehaviour
 
     public void Death()
     {
-        animator.SetTrigger("Death");
+        animator?.SetTrigger("Death");
         OnDeath?.Invoke();
     }
 }
