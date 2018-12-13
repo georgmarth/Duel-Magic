@@ -31,12 +31,19 @@ public class Health : MonoBehaviour
         OnHealthChanged?.Invoke(amount, -damage);
 
         if (amount == 0)
-            OnDeath?.Invoke();
+            Death();
+            
     }
 
     public void GainHealth(int gain)
     {
         amount += gain;
         OnHealthChanged (amount, gain);
+    }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+        OnDeath?.Invoke();
     }
 }
