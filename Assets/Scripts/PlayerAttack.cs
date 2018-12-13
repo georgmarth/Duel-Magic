@@ -8,6 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public Magic Magic;
     public LayerMask enemyMask;
     public float AttackCost = 5f;
+    public Animator animator;
 
     public Transform Target;
 
@@ -20,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Magic.UseMagic(AttackCost))
         {
+            animator.SetTrigger("Attack");
             var instance = Instantiate(MissilePrefab, Launch.position, Launch.rotation);
             MissileMovement instanceMovement = instance.GetComponent<MissileMovement>();
             if (instanceMovement != null)
@@ -28,6 +30,7 @@ public class PlayerAttack : MonoBehaviour
                 instanceMovement.StationaryTarget = stationaryTarget;
             }
             Damage missileDamage = instance.GetComponent<Damage>();
+            instance.layer = gameObject.layer;
             if (missileDamage != null)
             {
                 missileDamage.enemyMask = enemyMask;

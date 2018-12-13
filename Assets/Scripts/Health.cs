@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
 
     public int StartHealth = 100;
 
+    public Animator animator;
+
     /// <summary>
     /// OnHealthChanged(int current, int delta)
     /// delta is unclamped
@@ -24,6 +26,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        animator.SetTrigger("Hit");
         amount = Mathf.Max(0, amount - damage);
         OnHealthChanged?.Invoke(amount, -damage);
 

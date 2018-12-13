@@ -6,6 +6,8 @@ public class PlayerDefense : MonoBehaviour
     public Magic Magic;
     public float DefenseCost = 10f;
 
+    public Animator animator;
+
     public Transform ShieldSpawner;
 
     Shield shieldInstance;
@@ -14,6 +16,7 @@ public class PlayerDefense : MonoBehaviour
     {
         if (Magic.UseMagic(DefenseCost))
         {
+            animator.SetTrigger("Attack");
             if (shieldInstance == null)
             {
                 var instance = Instantiate(ShieldPrefab, ShieldSpawner.position, ShieldSpawner.rotation).GetComponent<Shield>();

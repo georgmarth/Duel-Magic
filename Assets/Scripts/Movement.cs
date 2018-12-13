@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     public float groundCheckOffset = 0.1f;
     public LayerMask groundLayer;
 
+    public Animator animator;
+
     private Rigidbody rb;
 
     private void Start()
@@ -31,6 +33,8 @@ public class Movement : MonoBehaviour
         Vector3 flatRight = Vector3.Cross(Vector3.up, flatForward);
         Vector3 movementVector = flatForward * MovementInput.Vertical + flatRight * MovementInput.Horizontal;
 
+
+
         // different control in air
         if (!grounded)
         {
@@ -40,6 +44,9 @@ public class Movement : MonoBehaviour
 
         Vector3 horizontalVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, MovementSettings.MaxSpeed);
+
+        float animatorSpeed = horizontalVelocity.magnitude / MovementSettings.MaxSpeed;
+        animator.SetFloat("Speed", animatorSpeed);
 
         // damp movement on ground
         if (grounded)
