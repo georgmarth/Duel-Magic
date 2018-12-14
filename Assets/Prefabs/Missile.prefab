@@ -471,7 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7dd09176bb864f43914d31f64630c76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageAmount: 5
+  DamageAmount: 7
+  TypeBoost: 4
   enemyMask:
     serializedVersion: 2
     m_Bits: 2048

@@ -863,7 +863,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 0343c2101f6f1f84cb898e52593306db, type: 3}
   m_Controller: {fileID: 9100000, guid: c628b20a84921fa4797994fc7a22d279, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -944,6 +944,7 @@ MonoBehaviour:
     type: 2}
   Magic: {fileID: 114082081443402966}
   DefenseCost: 10
+  shieldTransparency: 0.541
   animator: {fileID: 95802319440234376}
   ShieldSpawner: {fileID: 4764160990075954}
 --- !u!114 &114394624385932720
@@ -959,6 +960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 100
   animator: {fileID: 95802319440234376}
+  magic: {fileID: 114082081443402966}
+  state: {fileID: 0}
 --- !u!114 &114642545294491036
 MonoBehaviour:
   m_ObjectHideFlags: 1

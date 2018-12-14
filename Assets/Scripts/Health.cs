@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     public int StartHealth = 100;
 
     public Animator animator;
+    public Magic magic;
+
+    public GameState state;
 
     /// <summary>
     /// OnHealthChanged(int current, int delta)
@@ -45,5 +48,6 @@ public class Health : MonoBehaviour
     {
         animator?.SetTrigger("Death");
         OnDeath?.Invoke();
+        state.Lose(GetComponent<PlayerController>().player);
     }
 }

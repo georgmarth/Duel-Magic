@@ -115,4 +115,31 @@ public class Magic : MonoBehaviour
                 return redColor;
         }
     }
+
+    public static int TypeBoost(Type type1, Type type2)
+    {
+        int boost = 0;
+        if (type1 == Type.Red)
+        {
+            if (type2 == Type.Green)
+                boost = -1;
+            else if (type2 == Type.Blue)
+                boost = 1;
+        }
+        else if (type1 == Type.Green)
+        {
+            if (type2 == Type.Blue)
+                boost = -1;
+            else if (type2 == Type.Red)
+                boost = 1;
+        }
+        else if (type1 == Type.Blue)
+        {
+            if (type2 == Type.Red)
+                boost = -1;
+            else if (type2 == Type.Green)
+                boost = 1;
+        }
+        return boost;
+    }
 }

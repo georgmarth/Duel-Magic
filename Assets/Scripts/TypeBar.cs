@@ -7,11 +7,9 @@ public class TypeBar : MonoBehaviour
 
     public Image Indicator;
 
-    Color color;
-
     private void Start()
     {
-        color = Magic.GetColor();
+        Indicator.color = Magic.GetColor();
     }
 
     // Update is called once per frame

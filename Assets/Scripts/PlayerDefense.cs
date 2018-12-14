@@ -6,6 +6,9 @@ public class PlayerDefense : MonoBehaviour
     public Magic Magic;
     public float DefenseCost = 10f;
 
+    [Range(0, 1)]
+    public float shieldTransparency = .7f;
+
     public Animator animator;
 
     public Transform ShieldSpawner;
@@ -32,7 +35,17 @@ public class PlayerDefense : MonoBehaviour
                 shieldInstance.transform.position = ShieldSpawner.position;
                 shieldInstance.transform.rotation = ShieldSpawner.rotation;
             }
+            var renderer = shieldInstance.GetComponentInChildren<Renderer>();
+            renderer.material.color = ShieldColor();
+            shieldInstance.magicType = Magic.MagicType;
             shieldInstance.Activate();
         }
+    }
+
+    Color ShieldColor()
+    {
+        Color color = Magic.GetColor();
+        color.a = shieldTransparency;
+        return color;
     }
 }

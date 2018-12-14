@@ -4,6 +4,8 @@ public class Damage : MonoBehaviour
 {
     public int DamageAmount;
 
+    public int TypeBoost;
+
     public LayerMask enemyMask;
 
     public Magic.Type type;
@@ -16,7 +18,10 @@ public class Damage : MonoBehaviour
         // check if other is in enemyMask
         if (((1 << other.gameObject.layer) & enemyMask) != 0)
         {
-            other.GetComponentInParent<Health>()?.TakeDamage(DamageAmount);
+            var health = other.GetComponentInParent<Health>();
+            health?.TakeDamage(GetCalculatedDamage(health.magic.MagicType));
+            var shield = other.GetComponentInParent<Shield>();
+            shield?.Damage(GetCalculatedDamage(shield.magicType));
         }
 
         if (other.gameObject.layer != gameObject.layer)
@@ -34,5 +39,10 @@ public class Damage : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public int GetCalculatedDamage(Magic.Type enemyType)
+    {
+        return DamageAmount + (TypeBoost * Magic.TypeBoost(type, enemyType));
     }
 }
